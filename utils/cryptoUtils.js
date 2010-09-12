@@ -1,3 +1,10 @@
+/**
+ * @package    cryptoUtils
+ * @module     utils.main
+ * @author     tom@0x101.com
+ * @version    0.01
+ */
+
 var cryptoUtils = {
 
 	FIX_STRING_PREFIX: ' ',
@@ -9,9 +16,10 @@ var cryptoUtils = {
 		return str;
 	},
 
-	/*
-	 * @param string str
-	 * @param int blockSize
+	/**
+	 * @param {string} str
+	 * @param {int} blocksSize
+	 * @return {string}
 	 */
 	fixStringLength: function(str, blocksSize) {
 		var output = '';
