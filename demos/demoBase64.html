@@ -3,19 +3,25 @@
   <head>
     <title>jsCryptoUtils demo</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<script type="text/javascript" src="../utils/StringBlocksIterator.js"></script>
+	<script type="text/javascript" src="../utils/stringBlocksIterator.js"></script>
 	<script type="text/javascript" src="../utils/cryptoUtils.js"></script>
 	<script type="text/javascript" src="../base64.js"></script>
 	<script type="text/javascript">
-		function demoBase64(inputId, outputId) {
+		function demoEncodeBase64(inputId, outputId) {
 			var inputText = document.getElementById(inputId).value;
 			document.getElementById(outputId).value = base64.encode(inputText);
+		}
+                
+		function demoDecodeBase64(inputId, outputId) {
+			var inputText = document.getElementById(inputId).value;
+			document.getElementById(outputId).value = base64.decode(inputText);
 		}
 	</script>
   </head>
   <body>
 	  <textarea id="input"></textarea>
 	  <textarea id="output"></textarea>
-	  <button onclick="demoBase64('input', 'output');">test</button>
+	  <button onclick="demoEncodeBase64('input', 'output');">encode</button>
+	  <button onclick="demoDecodeBase64('input', 'output');">decode</button>
   </body>
 </html>

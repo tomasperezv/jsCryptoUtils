@@ -63,6 +63,33 @@ var base64 = {
 	 * @return {string}
 	 */
 	decode: function(inputText) {
+	    // TODO: review the algorithm
+	    var output = '';
+            if(typeof(inputText)==='string') {
+		// fix the string length
+		input = cryptoUtils.fixStringLength(inputText, this.DECODE_BLOCKS_SIZE);
+		// init the stringBlocksIterator
+		stringBlocksIterator = new StringBlocksIterator;
+		stringBlocksIterator.init(input, this.DECODE_BLOCKS_SIZE);
+		while((subdata = stringBlocksIterator.current())) {
+		    var x = this._base64Alpha.indexOf(subdata[0]);
+		    var y = this._base64Alpha.indexOf(subdata[1]);
+		    var z = this._base64Alpha.indexOf(subdata[2]);
+		    var k = this._base64Alpha.indexOf(subdata[3]);
+		    
+		    // Apply the bitwise operator to decode the base64 data
+		    var _x = (x << 2) | (y >> 4);
+		    var _y = (y << 4) | (z >> 2);
+		    var _z = (z << 6) | k;		    
+		    
+		    // Prepare the output
+		    output += String.fromCharCode(_x, _y, _z);
+		    
+		    // Process next data block
+		    stringBlocksIterator.next();
+		}
+	    }
+            return output;
 	},
 	
 	_getAlphaSubStr: function(posArray) {
