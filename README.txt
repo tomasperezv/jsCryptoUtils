@@ -7,7 +7,6 @@ Modules implemented:
 
 	- Utilities
 
-
 		- utils.main
 		- utils.stringBlocksIterator
 		- base64.encode
