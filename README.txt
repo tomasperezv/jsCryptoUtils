@@ -7,15 +7,18 @@ Modules implemented:
 
 	- Utilities
 
+
 		- utils.main
 		- utils.stringBlocksIterator
 		- base64.encode
+		- base64.decode
+		- cryptoConsole
 
 TODO:
 
 	- Utilities
 
-		- base64.decode
+		- Fix special chars in base64 encode/decode process
 
 	- Cipher algorithms
 
