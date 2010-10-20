@@ -2,7 +2,6 @@ jsCryptoUtils
 
 Small POC: Javascript library with cryptographic utilities: algorithms and functions.
 
-
 Modules implemented:
 
 	- Utilities
@@ -12,6 +11,11 @@ Modules implemented:
 		- base64.encode
 		- base64.decode
 		- cryptoConsole
+		- demosLoader
+
+	- Cipher algorithms
+	    
+		- xor.encode
 
 TODO:
 

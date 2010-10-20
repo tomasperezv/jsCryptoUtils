@@ -11,7 +11,7 @@
 var base64 = {
 
 	/**
-	 * @var _alpha
+	 * @var _base64Alpha
 	 */
 	_base64Alpha: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789& ",
 	
@@ -30,30 +30,32 @@ var base64 = {
 	 * @param {string} inputText
 	 * @return {string}
 	 */
-	encode: function(inputText) {
+	encode: function (inputText) {
 	    var output = '';
-	    if(typeof(inputText)==='string') {
+	    if (typeof(inputText) === 'string') {
 		// fix the string length
 		input = cryptoUtils.fixStringLength(inputText, this.ENCODE_BLOCKS_SIZE);
 		// init the stringBlocksIterator
 		stringBlocksIterator = new StringBlocksIterator;
 		stringBlocksIterator.init(input, this.ENCODE_BLOCKS_SIZE);
-		while((subdata = stringBlocksIterator.current())) {
+		
+		var subdata = null;
+		while ((subdata = stringBlocksIterator.current())) {
 		    var x = subdata.charCodeAt(0);
 		    var y = subdata.charCodeAt(1);
 		    var z = subdata.charCodeAt(2);
 		    
-		    cryptoConsole.logArrayAsBin(new Array(x, y, z), 'base64.encode.input');
+		    cryptoConsole.logArrayAsBin([x, y, z], 'base64.encode.input');
 
 		    // Apply the necessary bitwise operators
 		    var _x = x >> 2;
 		    var _y = ((x & 3) << 4) | (y >> 4);   
 		    var _z = ((y & 15) << 2) | (z >> 6);
-		    var _k = z & 63; 
+                    var _k = z & 63; 
 
-		    cryptoConsole.logArrayAsBin(new Array(_x, _y, _z, _k), 'base64.decode.output');
+		    cryptoConsole.logArrayAsBin([_x, _y, _z, _k], 'base64.decode.output');
 
-		    output += this._getAlphaSubStr(new Array(_x, _y, _z, _k));
+		    output += this._getAlphaSubStr([_x, _y, _z, _k]);
 
 		    // Process next block 
 		    stringBlocksIterator.next();
@@ -66,15 +68,17 @@ var base64 = {
 	 * @param {string} inputText
 	 * @return {string}
 	 */
-	decode: function(inputText) {
+	decode: function (inputText) {
 	    // TODO: fix special chars like áéíóú
 	    var output = '';
-            if(typeof(inputText)==='string') {
+            if (typeof(inputText) === 'string') {
 		// fix the string length
 		input = cryptoUtils.fixStringLength(inputText, this.DECODE_BLOCKS_SIZE);
 		// init the stringBlocksIterator
 		stringBlocksIterator = new StringBlocksIterator;
 		stringBlocksIterator.init(input, this.DECODE_BLOCKS_SIZE);
+		
+		var subdata = null;
 		while((subdata = stringBlocksIterator.current())) {
 		    var x = this._base64Alpha.indexOf(subdata[0]);
 		    var y = this._base64Alpha.indexOf(subdata[1]);
@@ -113,7 +117,7 @@ var base64 = {
             return output;
 	},
 	
-	_getAlphaSubStr: function(posArray) {
+	_getAlphaSubStr: function (posArray) {
 		output = '';
 		for(var i in posArray) {
 			output += this._base64Alpha[posArray[i]];
