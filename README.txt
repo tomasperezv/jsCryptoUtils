@@ -12,6 +12,7 @@ Modules implemented:
 		- base64.decode
 		- cryptoConsole
 		- demosLoader
+		- htmlGenerator
 
 	- Cipher algorithms
 	    
