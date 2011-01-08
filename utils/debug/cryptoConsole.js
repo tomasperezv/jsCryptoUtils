@@ -42,8 +42,14 @@ var cryptoConsole = {
     BASE_HEX: 16,
 
     /**
-     * @param {string|object} input
-     * @param {int} logLevel
+	 * Log a text/object in the console with an optional error level(DEBUG) as
+	 * default.
+	 * 
+	 * @author tom@0x101.com 
+	 * @visibility {Public}
+     * @param {String|Object} input
+     * @param {Integer} logLevel
+	 * @return void
      */
     log: function(input, logLevel) {
 		if (typeof logLevel === 'undefined') {
@@ -53,39 +59,68 @@ var cryptoConsole = {
     },
     
     /**
+	 * Log a text/object in the console in the info error level.
+	 *
+	 * @author tom@0x101.com 
+	 * @visibility {Public}
      * @param {object} input
+	 * @return void
      */
     info: function(input) {
 		this._consoleLog(input, this.LOG_LEVEL_INFO);
     },
     
     /**
-     * @param {int} input
+	 * Convert a number to a string with its numeric representation in binary. 
+	 *
+	 * @author tom@0x101.com 
+	 * @visibility {Public}
+     * @param {Integer} input
+	 * @return {String}
      */
     toBinaryString: function(input) {
 		return this.toBaseX(input, this.BASE_BIN);
     },
     
     /**
-     * @param {int} input
+	 * Convert a number to a string with its numeric representation in hex base. 
+	 *
+	 * @author tom@0x101.com 
+	 * @visibility {Public}
+     * @param {Integer} input
+	 * @return {String}
      */
     toHexString: function(input) {
 		return this.toBaseX(input, this.BASE_HEX);
     },
     
     /**
-     * @param {int} input
-     * @param {int} base
+	 * Convert a number to a string with its numeric representation in a custom
+	 * numeric base(Binary as default). 
+	 *
+	 * @author tom@0x101.com 
+	 * @visibility {Public}
+     * @param {Integer} input
+     * @param {Integer} base
+	 * @return {String}
      */
     toBaseX: function(input, base) {
+		if (typeof base === 'undefined') {
+			var base = this.BASE_BIN; 
+		}
 		input = parseInt(input);	
 		var inputAsBaseX = input.toString(base);
 		return inputAsBaseX;	
     },
 
     /**
+	 * Log an array in the console in binary.
+	 *
+	 * @author tom@0x101.com 
+	 * @visibility {Public}
      * @param {Array} arrayInput
-     * @param {string} description
+     * @param {String} description
+	 * @return void
      */
 	logArrayAsBin: function(arrayInput, description) {
 		var outputArray = new Array();
@@ -98,8 +133,13 @@ var cryptoConsole = {
      },
 
     /**
+	 * Log an array in the console.
+	 * 
+	 * @author tom@0x101.com 
+	 * @visibility {Public}
      * @param {Array} arrayInput
-     * @param {string} description
+     * @param {String} description
+	 * @return void
      */
      logArray: function(arrayInput, description) {
 		var outputString = description + ' ';
@@ -111,8 +151,14 @@ var cryptoConsole = {
      },
 
     /**
-     * @param {string|object} input
-     * @param {int} logLevel
+	 * Log an input element(text/object) in the console in an specified warning
+	 * level.
+	 *
+	 * @author tom@0x101.com 
+	 * @visibility {Private}
+     * @param {String|object} input
+     * @param {Integer} logLevel
+	 * @return void
      */
     _consoleLog: function(input, logLevel) {
 		if ( this._isConsoleEnabled() && this._isDebugEnabled()) {
@@ -144,7 +190,9 @@ var cryptoConsole = {
     },
     
     /**
-     * @return {boolean} Check if the console object is present.
+	 * @author tom@0x101.com 
+	 * @visibility {Private}
+     * @return {Boolean} Check if the console object is present.
      */
     _isConsoleEnabled: function() {	
 		/*
@@ -158,16 +206,28 @@ var cryptoConsole = {
     },
     
     /**
-     * @return {boolean} Check if the debug mode is enabled.
+	 * @author tom@0x101.com 
+	 * @visibility {Private}
+     * @return {Boolean} Check if the debug mode is enabled.
      */
     _isDebugEnabled: function() {
 		return this._enabled;
     },
-    
+   
+	/**
+	 * @author tom@0x101.com 
+	 * @visibility {Public}
+	 * @return void 
+	 */
     enableDebug: function() {
 		this._enabled = true;
     },
     
+	/**
+	 * @author tom@0x101.com 
+	 * @visibility {Public}
+	 * @return void 
+	 */
     disableDebug: function() {
 		this._enabled = false;
     }

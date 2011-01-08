@@ -11,7 +11,8 @@
 var base64 = {
 
 	/**
-	 * @var _base64Alpha
+	 * @var {String} _base64Alpha
+	 * @visibility {Private}
 	 */
 	_base64Alpha: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789& ",
 	
@@ -20,15 +21,18 @@ var base64 = {
 	 */
 	ENCODE_BLOCKS_SIZE: 3,
 	
-	
 	/**
 	 * @const DECODE_BLOCKS_SIZE
 	 */
 	DECODE_BLOCKS_SIZE: 4,
 	
 	/**
-	 * @param {string} inputText
-	 * @return {string}
+	 * Encode a text to base64.
+	 *
+	 * @author tom@0x101.com 
+	 * @visibility {Public}
+	 * @param {String} inputText
+	 * @return {String}
 	 */
 	encode: function (inputText) {
 	    var output = '';
@@ -65,8 +69,12 @@ var base64 = {
 	},
 
 	/**
-	 * @param {string} inputText
-	 * @return {string}
+	 * Decode a text from base64.
+	 *
+	 * @author tom@0x101.com 
+	 * @visibility {Public}
+	 * @param {String} inputText
+	 * @return {String}
 	 */
 	decode: function (inputText) {
 	    // TODO: fix special chars like áéíóú
@@ -117,6 +125,15 @@ var base64 = {
         return output;
 	},
 	
+	/**
+	 * Returns an string from an array with positions in the alpha string.
+	 * e.g. positions (1, 3); alpha = "abcd" => "bd"
+	 *
+	 * @author tom@0x101.com 
+	 * @visibility {Private}
+	 * @param {Array} posArray
+	 * @return {String}
+	 */
 	_getAlphaSubStr: function (posArray) {
 		output = '';
 		for(var i in posArray) {
