@@ -8,17 +8,22 @@ Modules implemented:
 
 		- utils.main
 		- utils.stringBlocksIterator
-		- base64.encode
-		- base64.decode
-		- cryptoConsole
-		- demosLoader
-		- htmlGenerator
+		- Base64.encode
+		- Base64.decode
+		- core.CryptoConsole
+		- core.HtmlGenerator
+		- demo.DemosLoader
 
 	- Cipher algorithms
 	    
 		- xor.encode
 
 TODO:
+
+	- Clean code
+
+		- Decouple CryptoConsole from the internal implementation of the
+		  algorithms.
 
 	- Utilities
 

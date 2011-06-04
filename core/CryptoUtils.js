@@ -5,7 +5,7 @@
  * @version    0.01
  */
 
-var cryptoUtils = {
+var CryptoUtils = {
 
 	/**
 	 * @const FIX_STRING_SUFFIX

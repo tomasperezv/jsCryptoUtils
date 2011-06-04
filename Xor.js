@@ -8,7 +8,7 @@
 /**
  * @class xor
  */
-var xor = {
+var Xor = {
     
 	/**
 	 * @const ENCODE_BLOCKS_SIZE
@@ -24,11 +24,11 @@ var xor = {
      * @param {String} key
      * @return {String}
      */    
-    encode: function (inputText, key) {
+	encode: function (inputText, key) {
 	
 		var outputText = '';
 	
-	    if (typeof(inputText) === 'string') {
+		if (typeof(inputText) === 'string') {
 			// init the stringBlocksIterator
 			inputIterator = new StringBlocksIterator;
 			inputIterator.init(inputText, this.ENCODE_BLOCKS_SIZE);
@@ -38,26 +38,26 @@ var xor = {
 			
 			var subdata = null;
 			while ((subdata = inputIterator.current())) {
-			    var x = subdata.charCodeAt(0);
-			    
-			    // If are at the end of the key, then go to the
-			    // begin.
-			    if(keyIterator.current() === null) {
+				var x = subdata.charCodeAt(0);
+				
+				// If we are at the end of the key, then move to the
+				// begin.
+				if(keyIterator.current() === null) {
 					keyIterator.reset();
-			    }
-			    
-			    var y = keyIterator.current().charCodeAt(0);
-			    
-			    // Apply the xor operation.
-			    var result = x ^ y;
-
+				}
+				
+				var y = keyIterator.current().charCodeAt(0);
+				
+				// Apply the xor operation.
+				var result = x ^ y;
+				
 				// Store the result in the output string
-			    outputText += String.fromCharCode(result);
-			    
-			    cryptoConsole.logArrayAsBin([x, y, result], 'input, output, result');
-			    
-			    inputIterator.next();
-			    keyIterator.next();
+				outputText += String.fromCharCode(result);
+				
+				CryptoConsole.logArrayAsBin([x, y, result], 'input, output, result');
+				
+				inputIterator.next();
+				keyIterator.next();
 			}
 	    }
 	    

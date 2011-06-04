@@ -8,30 +8,30 @@
 /**
  * Store the algorithms definition.
  */
-var algorithms = {
+var Algorithms = {
 
-    /**
-     * Identifiers of the HTML elements
-     */
+	/**
+	 * Identifiers of the HTML elements
+	 */
 	ALG_NAME: 'alg_name',
-    ALG_ENCODE: 'alg_func1',
-    ALG_DECODE: 'alg_func2',
-    ALG_INPUT: 'alg_input',
-    ALG_INPUT_LABEL : 'alg_input_label',
-    ALG_OUTPUT : 'alg_output',
-    ALG_INPUT_TYPE_TEXTAREA : 'alg_input_textarea',
-    ALG_INPUT_TYPE_SUBMIT : 'alg_input_submit',
-    ALG_INPUT_NAME : 'alg_input_name',
-    
-    /*
-     * For every different algorithm we add here a new entry, with
-     * the name of the methods and the type of input.
-     */
+	ALG_ENCODE: 'alg_func1',
+	ALG_DECODE: 'alg_func2',
+	ALG_INPUT: 'alg_input',
+	ALG_INPUT_LABEL : 'alg_input_label',
+	ALG_OUTPUT : 'alg_output',
+	ALG_INPUT_TYPE_TEXTAREA : 'alg_input_textarea',
+	ALG_INPUT_TYPE_SUBMIT : 'alg_input_submit',
+	ALG_INPUT_NAME : 'alg_input_name',
+	
+	/*
+	 * For every different algorithm we add here a new entry, with
+	 * the name of the methods and the type of input.
+	 */
 	definitions: {
 		'base64': {
 			ALG_NAME : 'base64',
-			ALG_ENCODE : 'base64.encode',
-			ALG_DECODE : 'base64.decode',
+			ALG_ENCODE : 'Base64.encode',
+			ALG_DECODE : 'Base64.decode',
 			ALG_INPUT: [
 				{
 					ALG_INPUT_NAME: 'text',		
@@ -43,15 +43,15 @@ var algorithms = {
 	
 		'basic xor': {
 			ALG_NAME : 'basic xor',
-			ALG_ENCODE : 'xor.encode',
-			ALG_DECODE : 'xor.encode',
+			ALG_ENCODE : 'Xor.encode',
+			ALG_DECODE : 'Xor.encode',
 			ALG_INPUT: [
 				{
 					ALG_INPUT_NAME: 'text',		
 					ALG_INPUT_LABEL: 'Input text',		
 					ALG_INPUT_TYPE: 'textarea'
 				},
-
+	
 				{
 					ALG_INPUT_NAME: 'key',
 					ALG_INPUT_LABEL: 'key',		
@@ -59,16 +59,19 @@ var algorithms = {
 				}	
 			]	
 		}	
-    }
+	}
 }
-
-var demosLoader = {
-
+	
+/**
+ * Generates dynamically a demo of the different algorithms. 
+ */
+DemosLoader = {
+	
 	MAIN_CONTENT_ID: 'demoContent',
 	ALGORITHM_CONTENT_ID: 'algorithmContent',
 	SELECT_ID: 'algorithmSelector',
 	UNDEFINED_ALGORITHM: -1,
-    
+	
 	_getAlgorithmSelected: function () {
 		var algorithm = this.UNDEFINED_ALGORITHM;
 		var algorithmSelect = document.getElementById(this.SELECT_ID);
@@ -76,29 +79,29 @@ var demosLoader = {
 			algorithm = algorithmSelect.value;
 		}
 		return algorithm;
-    },
-    
-    init: function () {
-		cryptoConsole.enableDebug();
+	},
+	
+	init: function () {
+		CryptoConsole.enableDebug();
 		// display the algorithm selector
-		var contentStr = htmlGenerator.generateSelect(this.SELECT_ID, algorithms.definitions, [['onchange','demosLoader.loadAlgorithm();']], [this.UNDEFINED_ALGORITHM, 'undefined algorithm']);
+		var contentStr = htmlGenerator.generateSelect(this.SELECT_ID, Algorithms.definitions, [['onchange','DemosLoader.loadAlgorithm();']], [this.UNDEFINED_ALGORITHM, 'undefined algorithm']);
 		htmlGenerator.inject(this.MAIN_CONTENT_ID, contentStr);
 	},
-    
+	
 	loadAlgorithm: function () {
 	
 		var algorithm = this._getAlgorithmSelected();
-
+	
 		if (algorithm !== this.UNDEFINED_ALGORITHM) {
 			var algorithmContentHTML = '';
-
-			if (typeof algorithms.definitions[algorithm] !== 'undefined') {
-
-				definition = algorithms.definitions[algorithm];   
-
+	
+			if (typeof Algorithms.definitions[algorithm] !== 'undefined') {
+	
+				definition = Algorithms.definitions[algorithm];   
+	
 				algorithmContentHTML = '';
 				algorithmContentHTML += definition.ALG_NAME;
-
+	
 				for(inputPos in definition.ALG_INPUT) {
 					var input = definition.ALG_INPUT[inputPos];
 					algorithmContentHTML += htmlGenerator.generateDiv('', input.ALG_INPUT_LABEL); 
@@ -115,38 +118,38 @@ var demosLoader = {
 						}
 					}
 				}
-    
-				algorithmContentHTML += htmlGenerator.generateDiv('', htmlGenerator.generateTextarea(algorithms.ALG_OUTPUT));
+	
+				algorithmContentHTML += htmlGenerator.generateDiv('', htmlGenerator.generateTextarea(Algorithms.ALG_OUTPUT));
 				algorithmContentHTML += htmlGenerator.genericTag('div');
-				algorithmContentHTML += htmlGenerator.genericTag('input', '', [['type', 'button'], ['onclick', 'demosLoader.encode();'], ['value', 'encode']]);
-				algorithmContentHTML += htmlGenerator.genericTag('input', '', [['type','button'],['onclick','demosLoader.decode();'],['value','decode']]);
-
+				algorithmContentHTML += htmlGenerator.genericTag('input', '', [['type', 'button'], ['onclick', 'DemosLoader.encode();'], ['value', 'encode']]);
+				algorithmContentHTML += htmlGenerator.genericTag('input', '', [['type','button'],['onclick','DemosLoader.decode();'],['value','decode']]);
+	
 				algorithmContentHTML += htmlGenerator.genericClosingTag('div');
 	
 			} else {
-				cryptoConsole.log('undefined algorithm', cryptoConsole.LOG_LEVEL_ERROR);
+				CryptoConsole.log('undefined algorithm', cryptoConsole.LOG_LEVEL_ERROR);
 			}
 			
 			htmlGenerator.inject(this.ALGORITHM_CONTENT_ID, algorithmContentHTML);
 		}
 	},
-    
-    encode: function() {
+	
+	encode: function() {
 		this._runAlgorithm(true);
 	},
-    
-    decode: function() {
+	
+	decode: function() {
 		this._runAlgorithm(false);	
-    },
-
-    _runAlgorithm: function (encodeMode) {
+	},
+	
+	_runAlgorithm: function (encodeMode) {
 	
 		var algorithm = this._getAlgorithmSelected();
 	
 		if (algorithm !== this.UNDEFINED_ALGORITHM) {
 	    
-			if (typeof algorithms.definitions[algorithm] !== 'undefined') {
-				var definition = algorithms.definitions[algorithm];
+			if (typeof Algorithms.definitions[algorithm] !== 'undefined') {
+				var definition = Algorithms.definitions[algorithm];
 		
 				var encodeIns = 'var output = ';
 		
@@ -163,7 +166,7 @@ var demosLoader = {
 					var input = document.getElementById(inputId);
 		
 					if(!firstInput) {
-							encodeIns += ', ';
+						encodeIns += ', ';
 					}
 		
 					encodeIns += '"' + input.value+ '"';
@@ -173,11 +176,11 @@ var demosLoader = {
 		
 				encodeIns += ');'
 		
-				cryptoConsole.log(encodeIns);
+				CryptoConsole.log(encodeIns);
 				eval(encodeIns);
 		
-				document.getElementById(algorithms.ALG_OUTPUT).value = output;
+				document.getElementById(Algorithms.ALG_OUTPUT).value = output;
 			}
 		}
-    }
+	}
 }

@@ -9,7 +9,7 @@
  * @class cryptoConsole
  * @see http://getfirebug.com/wiki/index.php/Console_API
  */
-var cryptoConsole = {
+var CryptoConsole = {
     
     /**
      * @const LOG_LEVEL_DEBUG
