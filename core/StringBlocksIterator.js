@@ -2,7 +2,6 @@
  * @package    cryptoUtils
  * @module     utils.stringBlocksIterator
  * @author     tom@0x101.com
- * @version    0.01
  */
 
 var StringBlocksIterator = function() {

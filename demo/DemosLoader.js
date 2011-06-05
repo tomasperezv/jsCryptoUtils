@@ -29,9 +29,9 @@ var Algorithms = {
 	 */
 	definitions: {
 		'base64': {
-			ALG_NAME : 'base64',
-			ALG_ENCODE : 'Base64.encode',
-			ALG_DECODE : 'Base64.decode',
+			ALG_NAME : 'Base64',
+			ALG_ENCODE : 'encode',
+			ALG_DECODE : 'decode',
 			ALG_INPUT: [
 				{
 					ALG_INPUT_NAME: 'text',		
@@ -42,9 +42,9 @@ var Algorithms = {
 		},
 	
 		'basic xor': {
-			ALG_NAME : 'basic xor',
-			ALG_ENCODE : 'Xor.encode',
-			ALG_DECODE : 'Xor.encode',
+			ALG_NAME : 'Xor',
+			ALG_ENCODE : 'encode',
+			ALG_DECODE : 'encode',
 			ALG_INPUT: [
 				{
 					ALG_INPUT_NAME: 'text',		
@@ -150,8 +150,14 @@ DemosLoader = {
 	    
 			if (typeof Algorithms.definitions[algorithm] !== 'undefined') {
 				var definition = Algorithms.definitions[algorithm];
-		
-				var encodeIns = 'var output = ';
+
+				var encodeIns = 'var algorithm = ';
+				// Instantiate the algorithm
+				encodeIns += 'new ' + definition.ALG_NAME + '()'; 
+				eval(encodeIns);
+
+				// Call to the method
+				var encodeIns = 'var output = algorithm.';
 		
 				if(encodeMode) {
 				    encodeIns += definition.ALG_ENCODE +'(';
