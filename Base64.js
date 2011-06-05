@@ -89,7 +89,7 @@ Base64.prototype.encode = function (inputText) {
 		}
 	}
 	return output;
-},
+}
 
 /**
  * Decode a text from base64.
