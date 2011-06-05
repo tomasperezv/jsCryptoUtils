@@ -59,10 +59,10 @@ Base64.prototype.encode = function (inputText) {
 	var output = '';
 	if (typeof(inputText) === 'string') {
 		// fix the string length
-		input = CryptoUtils.fixStringLength(inputText, this.ENCODE_BLOCKS_SIZE);
+		var input = CryptoUtils.fixStringLength(inputText, this.encodeBlocksSize);
 		// init the stringBlocksIterator
-		stringBlocksIterator = new StringBlocksIterator;
-		stringBlocksIterator.init(input, this.ENCODE_BLOCKS_SIZE);
+		var stringBlocksIterator = new StringBlocksIterator;
+		stringBlocksIterator.init(input, this.encodeBlocksSize);
 		
 		var subdata = null;
 		while ((subdata = stringBlocksIterator.current())) {
@@ -104,10 +104,10 @@ Base64.prototype.decode = function (inputText) {
 	var output = '';
 	if (typeof(inputText) === 'string') {
 		// fix the string length
-		input = CryptoUtils.fixStringLength(inputText, this.DECODE_BLOCKS_SIZE);
+		input = CryptoUtils.fixStringLength(inputText, this.decodeBlocksSize);
 		// init the stringBlocksIterator
 		stringBlocksIterator = new StringBlocksIterator;
-		stringBlocksIterator.init(input, this.DECODE_BLOCKS_SIZE);
+		stringBlocksIterator.init(input, this.decodeBlocksSize);
 		
 		var subdata = null;
 		while((subdata = stringBlocksIterator.current())) {
