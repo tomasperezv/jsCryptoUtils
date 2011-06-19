@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<script src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js" charset="utf-8"></script>
+
+		<script type="text/javascript" src="../core/StringBlocksIterator.js"></script>
+		<script type="text/javascript" src="../core/debug/CryptoConsole.js"></script>
+		<script type="text/javascript" src="../core/CryptoUtils.js"></script>
+		<script type="text/javascript" src="../core/HtmlGenerator.js"></script>
+		<script type="text/javascript" src="../core/Algorithm.js"></script>
+		<script type="text/javascript" src="../Base64.js"></script>
+		<script type="text/javascript" src="../Xor.js"></script>
+
+		<script type="text/javascript" src="./Base64Test.js"></script>
+	</head>
+
+	<body class="yui3-skin-sam  yui-skin-sam">
+		<div id="testLogger"></div>
+	</body>
+
+	<script type="text/javascript">
+		YUI().use('console', 'test', 'cryptoUtils', function (Y) {
+
+			// Initialize the namespace
+			Y.namespace("cryptoUtils.test");
+
+			// Initialize and render the console
+			//var r = new Y.Console({
+				//newestOnTop : false,
+			//});
+			
+			//r.render('#testLogger');
+	
+		});
+	</script>
+</html>

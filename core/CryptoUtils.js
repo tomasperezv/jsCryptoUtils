@@ -51,5 +51,22 @@ var CryptoUtils = {
 			}
 		}
 		return output;
+	},
+
+	/**
+	 * Fast trim implementation
+	 * @see http://blog.stevenlevithan.com/archives/faster-trim-javascript
+	 *
+	 * @author tom@0x101.com 
+	 * @visibility {public}
+	 * @param {String} str
+	 * @return {string}
+	 */
+	trim: function(str) {
+		var	str = str.replace(/^\s\s*/, ''),
+			ws = /\s/,
+			i = str.length;
+		while (ws.test(str.charAt(--i)));
+		return str.slice(0, i + 1);
 	}
 }

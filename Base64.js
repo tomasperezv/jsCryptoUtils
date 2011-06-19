@@ -147,6 +147,6 @@ Base64.prototype.decode = function (inputText) {
 			stringBlocksIterator.next();
 		}
 	}
-	return output;
+	return CryptoUtils.trim(output);
 }
 
