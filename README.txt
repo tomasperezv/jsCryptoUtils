@@ -19,6 +19,10 @@ Modules implemented:
 	    
 		- Basic Xor
 
+	- Test
+
+		- Base64
+
 Roadmap:
 
 	- Algorithms
