@@ -42,7 +42,7 @@ function Base64() {
 			output += this.base64Alpha[posArray[i]];
 		}
 		return output;
-	}
+	};
 }
 
 Base64.prototype = new Algorithm();
@@ -61,7 +61,7 @@ Base64.prototype.encode = function (inputText) {
 		// fix the string length
 		var input = CryptoUtils.fixStringLength(inputText, this.encodeBlocksSize);
 		// init the stringBlocksIterator
-		var stringBlocksIterator = new StringBlocksIterator;
+		var stringBlocksIterator = new StringBlocksIterator();
 		stringBlocksIterator.init(input, this.encodeBlocksSize);
 		
 		var subdata = null;
@@ -89,7 +89,7 @@ Base64.prototype.encode = function (inputText) {
 		}
 	}
 	return output;
-}
+};
 
 /**
  * Decode a text from base64.
@@ -106,7 +106,7 @@ Base64.prototype.decode = function (inputText) {
 		// fix the string length
 		input = CryptoUtils.fixStringLength(inputText, this.decodeBlocksSize);
 		// init the stringBlocksIterator
-		stringBlocksIterator = new StringBlocksIterator;
+		stringBlocksIterator = new StringBlocksIterator();
 		stringBlocksIterator.init(input, this.decodeBlocksSize);
 		
 		var subdata = null;
@@ -148,5 +148,5 @@ Base64.prototype.decode = function (inputText) {
 		}
 	}
 	return CryptoUtils.trim(output);
-}
+};
 

@@ -46,17 +46,17 @@ function Algorithm() {
 
 	this.setOnBeforeIteration = function(callback) {
 		this.onBeforeIteration = callback;
-	}
+	};
 	
 	this.setOnAfterIteration = function(callback) {
 		this.onAfterIteration = callback;
-	}
+	};
 
 	this.sendCallback = function(callback) {
 		if (typeof callback !== 'undefined' && typeof callback === 'function') {
 			callback();
 		}
-	}
+	};
 }
 
 /**
@@ -64,9 +64,9 @@ function Algorithm() {
  */
 Algorithm.prototype.encode = function() {
 	throw new Error(this.ABSTRACT_METHOD_MESSAGE);
-}
+};
 
 Algorithm.prototype.decode = function() {
 	throw new Error(this.ABSTRACT_METHOD_MESSAGE);
-}
+};
 

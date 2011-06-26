@@ -42,6 +42,11 @@ var CryptoConsole = {
     BASE_HEX: 16,
 
     /**
+     * @const BASE_DEC
+     */
+    BASE_DEC: 10,
+
+    /**
 	 * Log a text/object in the console with an optional error level(DEBUG) as
 	 * default.
 	 * 
@@ -108,7 +113,7 @@ var CryptoConsole = {
 		if (typeof base === 'undefined') {
 			var base = this.BASE_BIN; 
 		}
-		input = parseInt(input);	
+		var input = parseInt(input, this.BASE_DEC);	
 		var inputAsBaseX = input.toString(base);
 		return inputAsBaseX;	
     },
@@ -123,7 +128,7 @@ var CryptoConsole = {
 	 * @return void
      */
 	logArrayAsBin: function(arrayInput, description) {
-		var outputArray = new Array();
+		var outputArray = [];
 		for (var key in arrayInput) {
 			var input = arrayInput[key];
 			var inputAsBin = this.toBinaryString(input);
@@ -168,23 +173,22 @@ var CryptoConsole = {
 			}
 	    
 			switch(logLevel) {
-				default:
-				case this.LOG_LEVEL_DEBUG: {
-					console.debug(input);
-					break;
-				}
-				case this.LOG_LEVEL_INFO: {
+				case this.LOG_LEVEL_INFO:
 					console.info(input);
 					break;
-				}
-				case this.LOG_LEVEL_WARN: {
+
+				case this.LOG_LEVEL_WARN:
 					console.warn(input);
 					break;
-				}
-				case this.LOG_LEVEL_ERROR: {
+
+				case this.LOG_LEVEL_ERROR:
 					console.error(input);
 					break;
-				}		
+
+				default:
+				case this.LOG_LEVEL_DEBUG:
+					console.debug(input);
+					break;
 			}
 		}
     },
@@ -231,4 +235,4 @@ var CryptoConsole = {
     disableDebug: function() {
 		this._enabled = false;
     }
-}
+};

@@ -60,7 +60,7 @@ var Algorithms = {
 			]	
 		}	
 	}
-}
+};
 	
 /**
  * Generates dynamically a demo of the different algorithms. 
@@ -102,20 +102,19 @@ DemosLoader = {
 				algorithmContentHTML = '';
 				algorithmContentHTML += definition.ALG_NAME;
 	
-				for(inputPos in definition.ALG_INPUT) {
+				for(var inputPos in definition.ALG_INPUT) {
 					var input = definition.ALG_INPUT[inputPos];
 					algorithmContentHTML += htmlGenerator.generateDiv('', input.ALG_INPUT_LABEL); 
 					
 					switch(input.ALG_INPUT_TYPE) {
-						case 'submit': {
+						case 'submit':
 							algorithmContentHTML += htmlGenerator.genericTag('input', input.ALG_INPUT_NAME); 
 							algorithmContentHTML += htmlGenerator.genericClosingTag('input');
 							break;
-						}
-						case 'textarea': {
+
+						case 'textarea':
 							algorithmContentHTML += htmlGenerator.generateTextarea(input.ALG_INPUT_NAME); 
 							break;
-						}
 					}
 				}
 	
@@ -157,7 +156,7 @@ DemosLoader = {
 				eval(encodeIns);
 
 				// Call to the method
-				var encodeIns = 'var output = algorithm.';
+				encodeIns = 'var output = algorithm.';
 		
 				if(encodeMode) {
 				    encodeIns += definition.ALG_ENCODE +'(';
@@ -166,7 +165,7 @@ DemosLoader = {
 				}
 		
 				var firstInput = true;
-				for(inputPos in definition.ALG_INPUT) {
+				for(var inputPos in definition.ALG_INPUT) {
 		
 					var inputId = definition.ALG_INPUT[inputPos].ALG_INPUT_NAME;
 					var input = document.getElementById(inputId);
@@ -180,7 +179,7 @@ DemosLoader = {
 					firstInput = false;
 				}
 		
-				encodeIns += ');'
+				encodeIns += ');';
 		
 				CryptoConsole.log(encodeIns);
 				eval(encodeIns);
@@ -189,4 +188,4 @@ DemosLoader = {
 			}
 		}
 	}
-}
+};

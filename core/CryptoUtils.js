@@ -45,7 +45,7 @@ var CryptoUtils = {
 			var strLen = str.length;
 			var mod = (strLen % blocksSize);
 			var div = Math.floor(strLen / blocksSize);
-			if (mod != 0) {
+			if (mod !== 0) {
 				var extraChars = (blocksSize*(div+1))-strLen;
 				output = this._addExtraChars(str, extraChars); 
 			}
@@ -69,4 +69,4 @@ var CryptoUtils = {
 		while (ws.test(str.charAt(--i)));
 		return str.slice(0, i + 1);
 	}
-}
+};

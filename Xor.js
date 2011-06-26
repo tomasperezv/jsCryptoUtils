@@ -28,10 +28,10 @@ Xor.prototype.encode = function (inputText, key) {
 
 	if (typeof(inputText) === 'string') {
 		// init the stringBlocksIterator
-		inputIterator = new StringBlocksIterator;
+		inputIterator = new StringBlocksIterator();
 		inputIterator.init(inputText, this.encodeBlocksSize);
 		
-		keyIterator = new StringBlocksIterator;
+		keyIterator = new StringBlocksIterator();
 		keyIterator.init(key, this.encodeBlocksSize);
 		
 		var subdata = null;
@@ -61,5 +61,5 @@ Xor.prototype.encode = function (inputText, key) {
     }
     
     return outputText;
-}
+};
 

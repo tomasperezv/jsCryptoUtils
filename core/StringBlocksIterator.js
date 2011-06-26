@@ -97,6 +97,6 @@ var StringBlocksIterator = function() {
 		    }
 		    return hasPrev;
 		}
-	}
-}
+	};
+};
 

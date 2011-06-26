@@ -38,7 +38,7 @@
 	addTestCase: function(suiteId, testCase, testSuiteClass) {
 		if (typeof this.suites[suiteId] === 'undefined') {
 			// Create the test suite
-			this.suites[suiteId] = new testSuiteClass;
+			this.suites[suiteId] = new testSuiteClass();
 		}
 		this.suites[suiteId].add(testCase);
 	}, 

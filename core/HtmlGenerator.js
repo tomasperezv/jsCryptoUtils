@@ -79,7 +79,7 @@ var htmlGenerator = {
 
 		var inFirstElement = true;
 	
-		for (optionPos in options) {
+		for (var optionPos in options) {
 
 			if (typeof(firstElement) !== 'undefined' && inFirstElement) {
 				html += this.genericTag(this.TAG_OPTION, '', [['value', firstElement[0]]]);
@@ -193,20 +193,19 @@ var htmlGenerator = {
 			if (element!==null) {
 				// Injects the html
 				switch (writeMode) {
-					case this.WRITE_MODE_OVERWRITE: {
+					case this.WRITE_MODE_OVERWRITE:
 						element.innerHTML = html;
 						break;
-					}	
-					case this.WRITE_MODE_APPEND: {
+
+					case this.WRITE_MODE_APPEND:
 						element.innerHTML += html;
 						break;
-					}
-					case this.WRITE_MODE_PREPEND: {
+
+					case this.WRITE_MODE_PREPEND:
 						element.innerHTML = html + element.innerHTML;
 						break;
-					}
 				}
 			}
 		}
 	}
-}
+};
