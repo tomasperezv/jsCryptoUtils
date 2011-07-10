@@ -33,6 +33,7 @@ Roadmap:
 	- Hash functions
 
 		- Whirpool
+		- MD5
 		- SHA-2
 
 Author:

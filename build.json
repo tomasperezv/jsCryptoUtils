@@ -1,0 +1,17 @@
+{
+	"optimization": "ADVANCED_OPTIMIZATIONS",
+	"bundles": [
+		{
+			"files": [
+				"./core/debug/CryptoConsole.js",
+				"./core/Algorithm.js",
+				"./core/CryptoUtils.js",
+				"./core/HtmlGenerator.js",
+				"./core/StringBlocksIterator.js",
+				"./Base64.js",
+				"./Xor.js"
+			],
+			"output": "./build/jsCryptoUtils.js"
+		}
+	]
+}
