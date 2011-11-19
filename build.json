@@ -3,15 +3,15 @@
 	"bundles": [
 		{
 			"files": [
-				"./core/debug/CryptoConsole.js",
-				"./core/Algorithm.js",
-				"./core/CryptoUtils.js",
-				"./core/HtmlGenerator.js",
-				"./core/StringBlocksIterator.js",
-				"./Base64.js",
-				"./Xor.js"
+				"./core/debug/crypto-console.js",
+				"./core/algorithm.js",
+				"./core/crypto-utils.js",
+				"./core/html-generator.js",
+				"./core/string-block-iterator.js",
+				"./base64.js",
+				"./xor.js"
 			],
-			"output": "./build/jsCryptoUtils.js"
+			"output": "./build/crypto.js"
 		}
 	]
 }
