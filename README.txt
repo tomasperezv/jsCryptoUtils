@@ -2,6 +2,8 @@ jsCryptoUtils
 
 Javascript library with cryptographic utilities: algorithms and functions.
 
+Reference: http://tomasperezv.github.com/jsCryptoUtils
+
 Modules implemented:
 
 	- Core 
